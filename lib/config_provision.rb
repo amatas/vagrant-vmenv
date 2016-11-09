@@ -29,6 +29,9 @@ def config_provision(instance, vm_config, vm_id, apps)
         instance.vm.provision "shell", inline: basecmd
 
         cmds = \
+        "sudo mkdir -p /var/tmp/#{config['app_name']}/node_modules #{config['folder']['dest']}/node_modules \n"\
+        "sudo chown vagrant:vagrant -R /var/tmp/#{config['app_name']}/node_modules #{config['folder']['dest']}/node_modules \n"\
+        "sudo mount -o bind /var/tmp/#{config['app_name']}/node_modules #{config['folder']['dest']}/node_modules \n"\
         "sudo ansible-galaxy install -fr /provisioning/#{stack}-requirements.yml \n"\
         "sudo VARS_FILE=#{stack}-vagrant-vars.yml PYTHONUNBUFFERED=1 \\\n"
         if config["deploy"] then
