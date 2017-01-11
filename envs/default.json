@@ -5,7 +5,7 @@
         "memory": 1024 
     },
     "vms": {
-        "fedora": {
+        "centos": {
             "autostart": true,
             "box": "inclusivedesign/centos7",
             "folders": {
